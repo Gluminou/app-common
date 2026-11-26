@@ -1,0 +1,12 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><body><h1>app2</h1><pre id="out"></pre>
+<script>
+const APP_SYNC={app:"app2",keys:["items","lang"],prefixes:["ck-"]};
+window.events=0;
+function show(){document.getElementById('out').textContent=localStorage.getItem('items')||'[]'}
+window.addEventListener('storage',e=>{if(e.key==='items'){window.events++;show()}});
+function add(id){const l=JSON.parse(localStorage.getItem('items')||'[]');l.push({id,t:id});localStorage.setItem('items',JSON.stringify(l));show()}
+function rm(id){const l=JSON.parse(localStorage.getItem('items')||'[]').filter(x=>x.id!==id);localStorage.setItem('items',JSON.stringify(l));show()}
+show();
+</script>
+<div id="app-updates"></div>
+<script src="sync.js"></script></body></html>

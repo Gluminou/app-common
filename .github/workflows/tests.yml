@@ -1,0 +1,30 @@
+name: Tests
+
+# The master copies are used by every app, so they are tested here first.
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Syntax of every shared file
+        run: |
+          for f in sync.js updates.js ci/verify.mjs ci/check-common.mjs tools/release.mjs; do node --check "$f"; done
+          node -e "JSON.parse(require('fs').readFileSync('files.json','utf8'))"
+      - name: Merge rules of sync.js
+        run: node test/merge.test.mjs
+      - name: Install the browser
+        run: |
+          npm install --no-save 'playwright@^1'
+          npx playwright install --with-deps chromium
+      # Two simulated devices against a fake GitHub: connect, merge, offline edits,
+      # write conflict, view-only key, refused key, key shared between apps, French.
+      - name: Sync between two devices
+        run: node test/e2e.mjs
