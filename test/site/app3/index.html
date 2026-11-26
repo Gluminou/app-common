@@ -1,0 +1,9 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="apple-mobile-web-app-title" content="Locked app"><body><h1>Locked app</h1><pre id="out"></pre>
+<script>
+const APP_SYNC={app:"app3",keys:["notes"],content:"app3-content"};
+let C=null; try{C=JSON.parse(localStorage.getItem("app3-content"))}catch(e){}
+window.boots=(window.boots||0)+1;
+document.getElementById("out").textContent=C?C.secret:"";
+</script>
+<div id="app-updates"></div>
+<script src="sync.js"></script></body></html>

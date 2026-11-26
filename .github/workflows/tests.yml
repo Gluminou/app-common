@@ -16,7 +16,7 @@ jobs:
           node-version: '22'
       - name: Syntax of every shared file
         run: |
-          for f in sync.js updates.js ci/verify.mjs ci/check-common.mjs tools/release.mjs; do node --check "$f"; done
+          for f in sync.js updates.js ci/verify.mjs ci/check-common.mjs tools/release.mjs tools/content.mjs; do node --check "$f"; done
           node -e "JSON.parse(require('fs').readFileSync('files.json','utf8'))"
       - name: Merge rules of sync.js
         run: node test/merge.test.mjs
@@ -28,3 +28,5 @@ jobs:
       # write conflict, view-only key, refused key, key shared between apps, French.
       - name: Sync between two devices
         run: node test/e2e.mjs
+      - name: Locked app
+        run: node test/lock.mjs

@@ -1,6 +1,6 @@
 <!doctype html><html lang="en"><meta charset="utf-8"><body><h1>app1</h1><pre id="out"></pre>
 <script>
-const APP_SYNC={app:"app1",keys:["items","lang"],prefixes:["ck-"]};
+const APP_SYNC={app:"app1",keys:["items","lang"],prefixes:["ck-"],lock:false};
 window.events=0;
 function show(){document.getElementById('out').textContent=localStorage.getItem('items')||'[]'}
 window.addEventListener('storage',e=>{if(e.key==='items'){window.events++;show()}});

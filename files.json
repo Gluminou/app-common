@@ -1,7 +1,8 @@
 {
   "files": [
     { "path": "updates.js",               "place": "app",  "master": "updates.js",            "required": true },
-    { "path": "sync.js",                  "place": "app",  "master": "sync.js",               "required": "APP_SYNC" },
+    { "path": "sync.js",                  "place": "app",  "master": "sync.js",               "required": true },
+    { "path": "tools/content.mjs",        "place": "repo", "master": "tools/content.mjs",     "required": "content" },
     { "path": ".github/verify.mjs",       "place": "repo", "master": "ci/verify.mjs",         "required": true },
     { "path": ".github/check-common.mjs", "place": "repo", "master": "ci/check-common.mjs",   "required": true },
     { "path": "tools/release.mjs",        "place": "repo", "master": "tools/release.mjs",     "required": true }
