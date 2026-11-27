@@ -67,8 +67,22 @@ def bunbun(d):  # week calendar
         d.ellipse((cx - 95, cy - 95, cx + 95, cy + 95), fill=colors[i])
     return '#6a4fd8'
 
+def devoirs(d):  # open exercise book with a yellow star
+    W = '#FFFFFF'
+    d.polygon([(1024, 760), (330, 600), (330, 1560), (1024, 1720)], fill=W)
+    d.polygon([(1024, 760), (1718, 600), (1718, 1560), (1024, 1720)], fill='#E4ECFF')
+    for k in range(4):
+        y = 860 + k * 170
+        d.line([(440, y), (930, y + 100)], fill='#A9C0F5', width=40)
+        d.line([(1118, y + 100), (1608, y)], fill='#A9C0F5', width=40)
+    import math
+    cx, cy, R, r = 1024, 470, 260, 110
+    pts = [(cx + (R if i % 2 == 0 else r) * math.sin(i * math.pi / 5), cy - (R if i % 2 == 0 else r) * math.cos(i * math.pi / 5)) for i in range(10)]
+    d.polygon(pts, fill='#F2B705')
+    return '#2B5CC8'
+
 APPS = {'job-tracker': job_tracker, 'carnet-recettes': carnet, 'apartment-layout': apartment,
-        'piano-steps': piano, 'bunbun-week': bunbun}
+        'piano-steps': piano, 'bunbun-week': bunbun, 'devoirs': devoirs}
 
 if __name__ == '__main__':
     app, out = sys.argv[1], sys.argv[2]
